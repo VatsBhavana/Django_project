@@ -1,0 +1,82 @@
+﻿{% extends "myapp/learner_index.html" %}
+
+
+{% block content %}
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <h2 class="text-primary">Course Vedio & Quiz <small class="text-muted">Welcome to LearnHub</small></h2>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="../dashboard/index.html"><i class="zmdi zmdi-home"></i> LearnHub</a></li>
+                    <li class="breadcrumb-item">Vedio</li>
+                    <li class="breadcrumb-item active">Quiz</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="file_manager">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#doc">Videos</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pdf">Quiz</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!-- Video Tab -->
+                        <div class="tab-pane active" id="doc">
+                            <div class="row clearfix justify-content-center">
+                                <div class="col-lg-10 col-md-12">
+                                    <div class="card shadow-sm">
+                                        <div class="body">
+                                            <h3 class="text-primary text-center">{{ cid.course_name }}</h3>
+                                            {% if cid.video %}
+                                                {% if 'youtu.be' in cid.video %}
+                                                    {% with cid.video|slice:'17:' as video_id %}
+                                                        <div class="embed-responsive" style="height: 300px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video_id }}" allowfullscreen style="width: 100%; height: 100%;"></iframe>
+                                                        </div>
+                                                    {% endwith %}
+                                                {% else %}
+                                                    <div class="embed-responsive" style="height: 300px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                                                        <iframe class="embed-responsive-item" src="{{ cid.video }}" allowfullscreen style="width: 100%; height: 100%;"></iframe>
+                                                    </div>
+                                                {% endif %}
+                                            {% else %}
+                                                <p class="text-center text-muted">No video available for this course.</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- PDF Tab -->
+                        <div class="tab-pane" id="pdf">
+                            <div class="row clearfix justify-content-center">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card text-center shadow-sm">
+                                        <div class="body">
+                                            <h5 class="text-info">{{ cid.course_name }} Quiz</h5>
+                                            {% if cid.quiz %}
+                                                <a href="{{ cid.quiz }}" target="_blank" class="btn btn-primary mt-3">Take Quiz</a>
+                                            {% else %}
+                                                <p class="text-center text-muted">No quiz available for this course.</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div> <!-- Tab Content close -->
+                </div> <!-- col-lg-12 close -->
+            </div> <!-- row clearfix close -->
+        </div> <!-- file_manager close -->
+    </div> <!-- container-fluid close -->
+</section>
+{% endblock %}
