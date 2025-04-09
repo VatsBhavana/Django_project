@@ -3,6 +3,7 @@ LearnEarn Project
 Contains Django-based LearnEarn project files, including models, views, templates, and static assets.
 
 📚 LearnEarn – Learning Management System (LMS)
+
 Deployed on: (https://www.pythonanywhere.com)
 Tech Stack: Django 4.x | Python 3.x | HTML5 | CSS3 | Bootstrap | PostgreSQL/MySQL (if applicable)
 
